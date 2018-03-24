@@ -2,10 +2,12 @@
 
 var webSocket = new WebSocket("ws://" + location.hostname + ":" + location.port + "/chat");
 
-webSocket.onmessage = function (msg) { updateChat(msg); };
+webSocket.onmessage = function (msg) {
+            updateChat(msg);
+};
 webSocket.onopen = function () {
     getValue();
-}
+};
 webSocket.onclose = function ()
 {
     alert("WebSocket connection closed")
@@ -32,11 +34,15 @@ function sendMessage(message) {
 
 function updateChat(msg) {
     var data = JSON.parse(msg.data);
-    insert("chat", data.sender + " says: " + data.userMessage);
+    insert("chat", data.sender + ": " + data.userMessage);
     id("userlist").innerHTML = "";
+    insert("userlist", "<li>Users:</li>");
     data.userList.forEach(function (user) {
         insert("userlist", "<li>" + user + "</li>");
     });
+
+    var objDiv = document.getElementById("chat");
+    objDiv.scrollTop = objDiv.scrollHeight;
 }
 
 function insert(targetId, message) {
@@ -49,6 +55,5 @@ function id(id){
 
 function getValue(){
     var login = prompt("Enter your name : ");
-    var name = {"name": login};
-    webSocket.send(JSON.stringify(name));
+    webSocket.send(JSON.stringify({"name": login}));
 }
