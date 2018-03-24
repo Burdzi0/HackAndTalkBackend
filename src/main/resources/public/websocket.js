@@ -48,6 +48,7 @@ function id(id){
 }
 
 function getValue(){
-    var login = prompt("Enter your name : ", "your name here");
-    webSocket.send(login);
+    var login = prompt("Enter your name : ");
+    var name = {"name": login};
+    webSocket.send(JSON.stringify(name));
 }
