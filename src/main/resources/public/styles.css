@@ -9,8 +9,7 @@ html {
 body {
     font-family: monospace;
     font-size: 14px;
-    max-width: 480px;
-    margin: 0 auto;
+    max-width: 80%;
     padding: 20px
 }
 
@@ -21,7 +20,8 @@ input {
 }
 
 button {
-    float: right;
+    width: 100%;
+    float: auto;
 }
 
 li {
@@ -30,19 +30,17 @@ li {
 
 #chatControls {
     overflow: auto;
-    alignment: bottom;
     margin: 0 0 5px 0;
-    background: #f0f0f9;
 }
 
 #userlist {
     position: fixed;
-    left: 50%;
+    right: 5px;
+    margin-top: 2em;
     list-style: none;
-    margin-left: 250px;
     background: #f0f0f9;
     padding: 5px 10px;
-    width: 150px;
+    width: 20%;
     top: 11px;
 }
 
@@ -67,7 +65,7 @@ li {
     word-wrap: break-word;
 }
 
-#chat article:first-of-type {
+#chat article:last-of-type {
     background: #c9edc3;
     border-left-color: #74a377;
     animation: enter .2s 1;
@@ -79,3 +77,5 @@ li {
     to   { transform: none;        }
 }
 
+.container{
+}
