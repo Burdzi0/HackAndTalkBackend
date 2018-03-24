@@ -60,6 +60,7 @@ public class Chat {
         String userName = users.get(session);
         logger.info("Removing user: " + userName);
         users.remove(session);
+        UserIdGenerator.decrement();
         broadcast("Server", "User: " + userName + " left channel");
     }
 
