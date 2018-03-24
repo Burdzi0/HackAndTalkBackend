@@ -32,12 +32,12 @@ function updateChat(msg) {
     insert("chat", data.userMessage);
     id("userlist").innerHTML = "";
     data.userlist.forEach(function (user) {
-        insert("userlist", "<li>" + user + "</li>");
+        insert("userlist", "<li>" + user + "</li>" + "<br>");
     });
 }
 
 function insert(targetId, message) {
-    id(targetId).insertAdjacentHTML("afterbegin", message);
+    id(targetId).insertAdjacentHTML("afterbegin", "<div class = messageBox>" + message + "</div>");
 }
 
 function id(id){

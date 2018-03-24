@@ -12,7 +12,7 @@ public class Backend {
     final static Logger logger = LoggerFactory.getLogger(Backend.class);
 
     public static void main(String[] args) {
-        final int port = 5678;
+        final int port = 5424;
         port(port);
         logger.info("Starting web app...");
         logger.info("Registering init handler");
