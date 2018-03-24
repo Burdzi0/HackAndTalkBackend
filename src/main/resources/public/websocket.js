@@ -29,10 +29,10 @@ function sendMessage(message) {
 
 function updateChat(msg) {
     var data = JSON.parse(msg.data);
-    insert("chat", data.userMessage);
+    insert("chat", data.sender + " says: " + data.userMessage);
     id("userlist").innerHTML = "";
-    data.userlist.forEach(function (user) {
-        insert("userlist", "<li>" + user + "</li>" + "<br>");
+    data.userList.forEach(function (user) {
+        insert("userlist", user);
     });
 }
 
