@@ -21,7 +21,7 @@ input {
 
 button {
     width: 100%;
-    float: auto;
+    height: 2em;
 }
 
 li {
@@ -31,7 +31,7 @@ li {
 #chatControls {
     width: 78%;
     position: fixed;
-    bottom: 30px;
+    bottom: 1em;
     overflow: auto;
     margin: 0 0 5px 0;
 }
@@ -40,12 +40,12 @@ li {
     position: fixed;
     word-wrap: break-word;
     right: 5px;
-    margin-top: 12em;
+    margin-top: 15ch;
     list-style: none;
     background: #f0f0f9;
     padding: 5px 10px;
     width: 20%;
-    top: 11px;
+    top: 5px;
     font-size: 15pt;
 }
 
@@ -84,7 +84,7 @@ li {
 }
 
 #chat{
-    height: 48.5em;
+    height: 88ch;
     overflow-x: auto;
 }
 
@@ -94,4 +94,8 @@ li {
 
 .hack{
     color: #ed8b00;
+}
+
+#message{
+    height: 2.5em;
 }
