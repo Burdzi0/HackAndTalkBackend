@@ -34,9 +34,9 @@ function sendMessage(message) {
 
 function updateChat(msg) {
     var data = JSON.parse(msg.data);
-    insert("chat", data.sender + ": " + data.userMessage);
+    insert("chat", "<b>" + data.sender + ": </b>" + data.userMessage);
     id("userlist").innerHTML = "";
-    insert("userlist", "<li>Users:</li>");
+    insert("userlist", "<li><b>Users:</b></li>");
     data.userList.forEach(function (user) {
         insert("userlist", "<li>" + user + "</li>");
     });
