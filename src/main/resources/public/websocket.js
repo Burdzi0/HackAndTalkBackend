@@ -1,6 +1,6 @@
 //Establish the WebSocket connection and set up event handlers
 
-var webSocket = new WebSocket("ws://" + location.hostname + ":" + location.port + "/chat");
+var webSocket = new WebSocket("wss://" + location.hostname + ":" + location.port + "/chat");
 
 webSocket.onmessage = function (msg) { updateChat(msg); };
 webSocket.onclose = function ()
@@ -29,15 +29,15 @@ function sendMessage(message) {
 
 function updateChat(msg) {
     var data = JSON.parse(msg.data);
-    insert("chat", data.userMessage);
+    insert("chat", data.sender + " says: " + data.userMessage);
     id("userlist").innerHTML = "";
-    data.userlist.forEach(function (user) {
-        insert("userlist", "<li>" + user + "</li>");
+    data.userList.forEach(function (user) {
+        insert("userlist", user);
     });
 }
 
 function insert(targetId, message) {
-    id(targetId).insertAdjacentHTML("afterbegin", message);
+    id(targetId).insertAdjacentHTML("afterbegin", "<div class = messageBox>" + message + "</div>");
 }
 
 function id(id){
