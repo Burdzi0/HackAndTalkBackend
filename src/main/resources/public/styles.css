@@ -30,7 +30,9 @@ li {
 
 #chatControls {
     overflow: auto;
-    margin: 0 0 5px 0
+    alignment: bottom;
+    margin: 0 0 5px 0;
+    background: #f0f0f9;
 }
 
 #userlist {
@@ -46,7 +48,7 @@ li {
 
 #chat p {
     margin: 5px 0;
-    font-weight: 300
+    font-weight: 300;
 }
 
 #chat .timestamp {
@@ -76,3 +78,4 @@ li {
     50%  { transform: scale(1.05); }
     to   { transform: none;        }
 }
+
