@@ -1,5 +1,6 @@
 package com.trashcode.backend.service.chat;
 
+import com.trashcode.backend.model.Message;
 import org.eclipse.jetty.websocket.api.Session;
 import org.json.JSONObject;
 import org.slf4j.Logger;
@@ -15,7 +16,7 @@ public class Chat {
 
     private final Logger logger = LoggerFactory.getLogger(Chat.class);
     private Map<Session, String> users = new ConcurrentHashMap<>();
-    private Queue<String> messages = new ConcurrentLinkedQueue<>();
+    private Queue<Message> messages = new ConcurrentLinkedQueue<>();
 
     public synchronized void broadcast(String sender, String message) {
         logger.info("Broadcasting from sender: " + sender + ", message: " + message);
@@ -66,8 +67,16 @@ public class Chat {
         return users.get(session);
     }
 
-    public synchronized void registerMessage(String message) {
-        messages.add(message);
+    public synchronized void registerMessage(String sender, String message) {
+        messages.add(new Message(sender, message));
+    }
+
+    public synchronized void changeName(Session user, String name) {
+        users.replace(user, name);
+    }
+
+    public synchronized Queue<Message> getAllMessages() {
+        return messages;
     }
 
 }

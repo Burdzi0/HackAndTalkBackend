@@ -34,7 +34,12 @@ public class ChatWebSocket {
     @OnWebSocketMessage
     public void onMessage(Session user, String message) {
         logger.info("Broadcast message: " + message);
-        chat.registerMessage(message);
+        if (message.startsWith("registered")) {
+            chat.getAllMessages().forEach(singleMessage ->
+                chat.broadcast(singleMessage.getAuthor(), singleMessage.getContent())
+            );
+        }
+        chat.registerMessage(chat.getUser(user), message);
         chat.broadcast(chat.getUser(user), message);
     }
 }
