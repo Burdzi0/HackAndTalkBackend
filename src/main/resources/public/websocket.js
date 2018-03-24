@@ -37,7 +37,7 @@ function updateChat(msg) {
 }
 
 function insert(targetId, message) {
-    id(targetId).insertAdjacentHTML("afterbegin", "<div class = messageBox>" + message + "</div>");
+    id(targetId).insertAdjacentHTML("beforeend", "<div class = messageBox>" + message + "</div>");
 }
 
 function id(id){
