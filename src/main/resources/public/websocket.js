@@ -3,7 +3,7 @@
 var webSocket = new WebSocket("ws://" + location.hostname + ":" + location.port + "/chat");
 
 webSocket.onmessage = function (msg) { updateChat(msg); };
-webSocket.onopen = function (ev) {
+webSocket.onopen = function () {
     getValue();
 }
 webSocket.onclose = function ()
@@ -35,12 +35,12 @@ function updateChat(msg) {
     insert("chat", data.sender + " says: " + data.userMessage);
     id("userlist").innerHTML = "";
     data.userList.forEach(function (user) {
-        insert("userlist", user);
+        insert("userlist", "<li>" + user + "</li>");
     });
 }
 
 function insert(targetId, message) {
-    id(targetId).insertAdjacentHTML("beforeend", "<div class = messageBox>" + message + "</div>");
+    id(targetId).insertAdjacentHTML("beforeend", "<article class = messageBox>" + message + "</article>");
 }
 
 function id(id){
