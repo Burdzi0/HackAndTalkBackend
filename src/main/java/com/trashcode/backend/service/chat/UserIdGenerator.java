@@ -9,4 +9,8 @@ public class UserIdGenerator {
     public static synchronized int getNewUserID() {
         return usersCount.addAndGet(1);
     }
+
+    public static synchronized int decrement() {
+        return usersCount.decrementAndGet();
+    }
 }
