@@ -12,26 +12,29 @@ import org.slf4j.LoggerFactory;
 public class ChatWebSocket {
 
     private static final Logger logger = LoggerFactory.getLogger(ChatWebSocket.class);
+    private Chat chat;
+
+    public ChatWebSocket(Chat chat) {
+        this.chat = chat;
+    }
 
     @OnWebSocketConnect
     public void onConnect(Session session) {
         logger.info("New user connected");
-        String user = "User: " + UserIdGenerator.getNewUserID();
-        Chat.users.put(session, user);
-        Chat.broadcast("Server", user + " joined the chat");
+        String user = "User " + UserIdGenerator.getNewUserID();
+        chat.addUser(session, user);
+        chat.broadcast("Server", user + " joined the chat");
     }
 
     @OnWebSocketClose
     public void onClose(Session user, int statusCode, String reason) {
-        logger.info("User left chat");
-        String username = Chat.users.get(user);
-        Chat.users.remove(user);
-        Chat.broadcast("Server", (username + " left the chat"));
+        chat.removeUser(user);
     }
 
     @OnWebSocketMessage
     public void onMessage(Session user, String message) {
-        logger.info("Broadcast message");
-        Chat.broadcast(Chat.users.get(user), message);
+        logger.info("Broadcast message: " + message);
+        chat.registerMessage(message);
+        chat.broadcast(chat.getUser(user), message);
     }
 }

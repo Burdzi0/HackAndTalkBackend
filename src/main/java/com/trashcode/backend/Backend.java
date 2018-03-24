@@ -1,6 +1,7 @@
 package com.trashcode.backend;
 
 import com.trashcode.backend.config.WebAppConfig;
+import com.trashcode.backend.service.chat.Chat;
 import com.trashcode.backend.service.chat.ChatWebSocket;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,17 +13,15 @@ public class Backend {
     final static Logger logger = LoggerFactory.getLogger(Backend.class);
 
     public static void main(String[] args) {
-        final int port = 5678;
-        port(port);
-        logger.info("Starting web app...");
+        port(WebAppConfig.PORT);
+        logger.info("Starting web app on port: " + WebAppConfig.PORT);
         logger.info("Registering init handler");
         registerInitHandler();
 
         staticFileLocation(WebAppConfig.FILES_FOLDER);
 
-        webSocket("/chat", new ChatWebSocket());
+        webSocket("/chat", new ChatWebSocket(new Chat()));
         init();
-        logger.info("Exiting web app");
     }
 
     private static void registerInitHandler() {
