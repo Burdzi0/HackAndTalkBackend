@@ -3,6 +3,9 @@
 var webSocket = new WebSocket("ws://" + location.hostname + ":" + location.port + "/chat");
 
 webSocket.onmessage = function (msg) { updateChat(msg); };
+webSocket.onopen = function (ev) {
+    getValue();
+}
 webSocket.onclose = function ()
 {
     alert("WebSocket connection closed")
@@ -42,4 +45,9 @@ function insert(targetId, message) {
 
 function id(id){
     return document.getElementById(id);
+}
+
+function getValue(){
+    var login = prompt("Enter your name : ", "your name here");
+    webSocket.send(login);
 }
